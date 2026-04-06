@@ -105,23 +105,11 @@
 <script>
 const DAY_SHORT = ['M','T','W','T','F','S','S'];
 
-const FULL_POOL = {
-  upper:  ['Pull-ups','Push-ups','Dips','Handstand Push-ups'],
-  lower:  ['Pistol Squats','Sissy Squats','Single-Leg Hip Thrusts'],
-  core:   ['Plank Variations','Hollow Body Hold','L-Sit','Hanging Leg Raises','Ab Wheel Rollouts'],
-  cardio: ['Run','Swim','Bike']
-};
-
-const SPRINT_OPTS = {
-  Run:  [['100m','8 sets'],['400m','4 sets']],
-  Swim: [['100m','8 sets'],['400m','4 sets']],
-  Bike: [['100m sprint','8 sets'],['400m sprint','4 sets']]
-};
-const DISTANCE_OPTS = {
-  Run:  ['2 miles','4 miles','6 miles'],
-  Swim: ['2 miles','4 miles','6 miles'],
-  Bike: ['2 miles','4 miles','6 miles']
-};
+// Pools loaded from exercises.json at startup
+let FULL_POOL = {};
+let SPRINT_OPTS = {};
+let DISTANCE_OPTS = {};
+let CONFLICTS = [];
 
 function getMondayStr() {
   const d = new Date(), day = d.getDay();
@@ -200,10 +188,13 @@ function buildWorkout(state, dayType) {
   let upper = pickArr(pool.upper, 2);
   let lower = pickArr(pool.lower, dayType==='strength' ? 2 : 1);
 
-  if (lower.includes('Sissy Squats') && lower.includes('Pistol Squats')) {
-    lower = lower.filter(x => x !== 'Pistol Squats');
-    const alt = pool.lower.find(x => !lower.includes(x));
-    if (alt) lower.push(alt);
+  // Apply conflict rules from exercises.json
+  for (const pair of CONFLICTS) {
+    if (pair.every(x => lower.includes(x))) {
+      lower = lower.filter(x => x !== pair[1]);
+      const alt = pool.lower.find(x => !lower.includes(x));
+      if (alt) lower.push(alt);
+    }
   }
 
   const core = pickArr(pool.core, Math.random()<0.5 ? 3 : 4);
@@ -364,7 +355,19 @@ function resetWeek() {
   if (confirm('Reset the entire week?')) { localStorage.removeItem('workout_v3'); init(); }
 }
 
-function init() {
+async function init() {
+  // Load exercises from JSON, fall back to empty pools if offline and uncached
+  try {
+    const res = await fetch('/Workout/exercises.json');
+    const data = await res.json();
+    FULL_POOL   = { upper: data.upper, lower: data.lower, core: data.core, cardio: data.cardio };
+    SPRINT_OPTS   = data.sprint;
+    DISTANCE_OPTS = data.distance;
+    CONFLICTS     = data.conflicts || [];
+  } catch(e) {
+    console.warn('Could not load exercises.json, using cached state only.');
+  }
+
   const state = loadState();
   const todayStr = getTodayStr();
   const todayIdx = getTodayIdx();
@@ -385,6 +388,14 @@ function init() {
 }
 
 init();
+</script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/Workout/sw.js')
+      .catch(err => console.log('SW registration failed:', err));
+  });
+}
 </script>
 </body>
 </html>

@@ -1,0 +1,38 @@
+{
+  "upper": [
+    "Pull-ups",
+    "Push-ups",
+    "Dips",
+    "Handstand Push-ups"
+  ],
+  "lower": [
+    "Pistol Squats",
+    "Sissy Squats",
+    "Single-Leg Hip Thrusts"
+  ],
+  "core": [
+    "Plank Variations",
+    "Hollow Body Hold",
+    "L-Sit",
+    "Hanging Leg Raises",
+    "Ab Wheel Rollouts"
+  ],
+  "cardio": [
+    "Run",
+    "Swim",
+    "Bike"
+  ],
+  "conflicts": [
+    ["Sissy Squats", "Pistol Squats"]
+  ],
+  "sprint": {
+    "Run":  [["100m", "8 sets"], ["400m", "4 sets"]],
+    "Swim": [["100m", "8 sets"], ["400m", "4 sets"]],
+    "Bike": [["100m sprint", "8 sets"], ["400m sprint", "4 sets"]]
+  },
+  "distance": {
+    "Run":  ["2 miles", "4 miles", "6 miles"],
+    "Swim": ["2 miles", "4 miles", "6 miles"],
+    "Bike": ["2 miles", "4 miles", "6 miles"]
+  }
+}
