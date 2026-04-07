@@ -1,4 +1,4 @@
-const CACHE_NAME = 'workout-v2';
+const CACHE_NAME = 'workout-v3';
 const ASSETS = [
   '/Workout/',
   '/Workout/index.html',
@@ -24,14 +24,15 @@ self.addEventListener('activate', event => {
   self.clients.claim();
 });
 
+// Network-first: always try network, fall back to cache when offline
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request).then(cached => {
-      return cached || fetch(event.request).then(response => {
+    fetch(event.request)
+      .then(response => {
         const clone = response.clone();
         caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
         return response;
-      }).catch(() => cached);
-    })
+      })
+      .catch(() => caches.match(event.request))
   );
 });
