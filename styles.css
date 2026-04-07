@@ -1,0 +1,73 @@
+:root {
+  --bg: #0d0d0d; --surface: #161616; --surface2: #1f1f1f; --border: #2a2a2a;
+  --text: #f0f0f0; --muted: #666;
+  --accent-strength: #4a9eff; --accent-power: #f5a623;
+  --accent-cardio: #4cd964; --accent-rest: #888;
+  --mono: 'DM Mono', monospace; --sans: 'DM Sans', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { background: var(--bg); color: var(--text); font-family: var(--sans); min-height: 100vh; }
+.app { max-width: 480px; margin: 0 auto; padding: 0 0 80px; }
+
+.top-bar { padding: 56px 20px 20px; border-bottom: 1px solid var(--border); }
+.top-bar .day-label { font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+.top-bar h1 { font-size: 28px; font-weight: 300; letter-spacing: -0.5px; }
+.top-bar h1 span { font-weight: 500; }
+
+.week-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; padding: 16px 20px; border-bottom: 1px solid var(--border); }
+.day-cell { display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.day-cell .d-name { font-family: var(--mono); font-size: 9px; color: var(--muted); letter-spacing: 0.05em; }
+.day-cell .d-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); }
+.day-cell.today .d-name { color: var(--text); }
+.day-cell.type-strength .d-dot { background: var(--accent-strength); }
+.day-cell.type-power .d-dot { background: var(--accent-power); }
+.day-cell.type-cardio .d-dot { background: var(--accent-cardio); }
+.day-cell.type-rest .d-dot { background: var(--border); }
+.day-cell.done .d-dot { opacity: 0.3; }
+.day-cell.today.type-strength .d-dot { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--accent-strength); }
+.day-cell.today.type-power .d-dot { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--accent-power); }
+.day-cell.today.type-cardio .d-dot { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--accent-cardio); }
+.day-cell.today.type-rest .d-dot { box-shadow: 0 0 0 2px var(--bg), 0 0 0 3px var(--accent-rest); }
+
+.type-tag { display: inline-flex; align-items: center; gap: 6px; margin: 20px 20px 0; padding: 5px 12px; border-radius: 99px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; border: 1px solid; }
+.type-tag.strength { color: var(--accent-strength); border-color: var(--accent-strength); }
+.type-tag.power { color: var(--accent-power); border-color: var(--accent-power); }
+.type-tag.cardio { color: var(--accent-cardio); border-color: var(--accent-cardio); }
+.type-tag.rest { color: var(--accent-rest); border-color: var(--accent-rest); }
+.type-tag .dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+.gen-section { padding: 20px; }
+.gen-btn { width: 100%; padding: 18px; border-radius: 14px; border: none; cursor: pointer; font-family: var(--sans); font-size: 16px; font-weight: 500; letter-spacing: -0.2px; background: var(--text); color: var(--bg); transition: transform 0.1s, opacity 0.1s; -webkit-appearance: none; }
+.gen-btn:active { transform: scale(0.97); opacity: 0.85; }
+.gen-btn.secondary { background: var(--surface2); color: var(--text); margin-top: 10px; font-weight: 400; font-size: 14px; padding: 14px; }
+
+.workout-section { padding: 0 20px; }
+.section-header { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin: 24px 0 10px; }
+.exercise-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--surface); border-radius: 12px; margin-bottom: 6px; border: 1px solid var(--border); animation: slideIn 0.3s ease forwards; opacity: 0; }
+@keyframes slideIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.exercise-name { font-size: 15px; font-weight: 400; }
+.exercise-meta { font-family: var(--mono); font-size: 12px; color: var(--muted); text-align: right; }
+
+.cardio-row { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; background: var(--surface); border-radius: 12px; margin-bottom: 6px; border: 1px solid var(--border); border-left: 3px solid var(--accent-cardio); animation: slideIn 0.3s ease forwards; opacity: 0; }
+.cardio-top { display: flex; align-items: center; justify-content: space-between; }
+.cardio-name { font-size: 15px; font-weight: 400; }
+.cardio-type { font-family: var(--mono); font-size: 10px; color: var(--accent-cardio); letter-spacing: 0.08em; text-transform: uppercase; }
+.cardio-detail { font-family: var(--mono); font-size: 13px; color: var(--muted); }
+
+.pool-section { padding: 0 20px; }
+.pool-cat-label { font-size: 12px; color: var(--muted); margin-bottom: 6px; font-family: var(--mono); letter-spacing: 0.05em; }
+.pool-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.pool-pill { font-family: var(--mono); font-size: 11px; padding: 4px 10px; border-radius: 99px; border: 1px solid var(--border); color: var(--muted); }
+.pool-pill.used { opacity: 0.25; text-decoration: line-through; }
+.pool-pill.fresh { color: var(--text); border-color: #444; }
+
+.rest-screen { padding: 40px 20px; text-align: center; }
+.rest-screen .rest-icon { font-size: 48px; margin-bottom: 16px; }
+.rest-screen p { color: var(--muted); font-size: 15px; line-height: 1.6; }
+
+.divider { height: 1px; background: var(--border); margin: 24px 20px; }
+.workout-note { margin: 12px 0 0; padding: 12px 16px; background: var(--surface); border-radius: 12px; border-left: 3px solid var(--accent-power); font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+.reset-btn { display: block; width: calc(100% - 40px); margin: 0 20px; padding: 14px; background: transparent; border: 1px solid var(--border); border-radius: 12px; color: var(--muted); font-family: var(--sans); font-size: 13px; cursor: pointer; -webkit-appearance: none; }
+.reset-btn:active { opacity: 0.6; }
+.empty-state { padding: 32px 20px; text-align: center; color: var(--muted); font-size: 15px; line-height: 1.6; }

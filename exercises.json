@@ -1,38 +1,133 @@
 {
-  "upper": [
-    "Pull-ups",
-    "Push-ups",
-    "Dips",
-    "Handstand Push-ups"
-  ],
-  "lower": [
-    "Pistol Squats",
-    "Sissy Squats",
-    "Single-Leg Hip Thrusts"
-  ],
-  "core": [
-    "Plank Variations",
-    "Hollow Body Hold",
-    "L-Sit",
-    "Hanging Leg Raises",
-    "Ab Wheel Rollouts"
-  ],
-  "cardio": [
-    "Run",
-    "Swim",
-    "Bike"
-  ],
-  "conflicts": [
-    ["Sissy Squats", "Pistol Squats"]
-  ],
-  "sprint": {
-    "Run":  [["100m", "8 sets"], ["400m", "4 sets"]],
-    "Swim": [["100m", "8 sets"], ["400m", "4 sets"]],
-    "Bike": [["100m sprint", "8 sets"], ["400m sprint", "4 sets"]]
+  "upper": {
+    "equipment": {
+      "power": [
+        "Clean and Jerk",
+        "Pull Ups",
+        "Chin Ups",
+        "Landmine Press"
+      ],
+      "strength": [
+        "Overhead Press",
+        "Pull Ups",
+        "Chin Ups",
+        "Bench Press",
+        "Dips"
+      ]
+    },
+    "bodyweight": {
+      "power": [
+        "Pull Ups",
+        "Chin Ups",
+        "Clap Push-ups"
+      ],
+      "strength": [
+        "Pull Ups",
+        "Chin Ups",
+        "Trinity Push-ups",
+        "Handstand Push-ups",
+        "Dips"
+      ]
+    }
   },
-  "distance": {
-    "Run":  ["2 miles", "4 miles", "6 miles"],
-    "Swim": ["2 miles", "4 miles", "6 miles"],
-    "Bike": ["2 miles", "4 miles", "6 miles"]
-  }
+  "lower": {
+    "equipment": {
+      "power": [
+        "Box Squats",
+        "Box Jumps",
+        "Power Clean",
+        "Jump Squats"
+      ],
+      "strength": [
+        "Back Squat",
+        "Front Squat",
+        "Deadlift",
+        "Lunges",
+        "Sissy Squats",
+        "Pistol Squats",
+        "Hip Thrusts"
+      ]
+    },
+    "bodyweight": {
+      "power": [
+        "Kneeling Squat Jump",
+        "Lateral Jumps",
+        "Long Jumps",
+        "Jump Lunges"
+      ],
+      "strength": [
+        "Lunges",
+        "Sissy Squats",
+        "Pistol Squats",
+        "Hip Thrusts"
+      ]
+    }
+  },
+  "core": {
+    "equipment": {
+      "movers": [
+        "Cable Crunch",
+        "Ab Wheel Rollout",
+        "Russian Twist",
+        "Hanging Knee/Leg Raises",
+        "Toes to Bar",
+        "Dumbbell Side Bend"
+      ],
+      "stabilizers": [
+        "Hanging L-Sit",
+        "Pallof Press"
+      ]
+    },
+    "bodyweight": {
+      "movers": [
+        "Russian Twist",
+        "Bicycle Crunch",
+        "Flutter Kicks",
+        "Leg Raises",
+        "Heel Touches",
+        "Sit Ups",
+        "Toe Touches"
+      ],
+      "stabilizers": [
+        "Side Plank",
+        "Plank",
+        "Hollow Body Hold"
+      ]
+    }
+  },
+  "cardio": {
+    "outdoor": {
+      "sprint": {
+        "Run":  [["100m", "8 sets"], ["400m", "4 sets"]],
+        "Swim": [["100m", "8 sets"], ["400m", "4 sets"]],
+        "Bike": [["100m sprint", "8 sets"], ["400m sprint", "4 sets"]]
+      },
+      "distance": {
+        "Run":  ["2 miles", "4 miles", "6 miles"],
+        "Swim": ["2 miles", "4 miles", "6 miles"],
+        "Bike": ["2 miles", "4 miles", "6 miles"]
+      }
+    },
+    "indoor": {
+      "sprint": {
+        "Swim":           [["100m", "8 sets"], ["400m", "4 sets"]],
+        "Ski Erg":        [["500m", "8 sets"], ["1000m", "4 sets"]],
+        "Rowing Machine": [["500m", "8 sets"], ["1000m", "4 sets"]]
+      },
+      "distance": {
+        "Swim":            ["2 miles", "4 miles", "6 miles"],
+        "Treadmill":       ["2 miles", "4 miles", "6 miles"],
+        "Stationary Bike": ["2 miles", "4 miles", "6 miles"],
+        "Ski Erg":         ["2 miles", "4 miles", "6 miles"],
+        "Rowing Machine":  ["2 miles", "4 miles", "6 miles"]
+      }
+    }
+  },
+  "conflicts": [
+    ["Sissy Squats", "Pistol Squats"],
+    ["Pull Ups", "Chin Ups"],
+    ["Hanging Knee/Leg Raises", "Toes to Bar"],
+    ["Side Plank", "Plank"],
+    ["Cable Crunch", "Ab Wheel Rollout"]
+  ]
 }
